@@ -85,6 +85,10 @@ export function getUntaintedPrototype<T extends keyof BasePrototypeCache>(
     return defaultObj.prototype as BasePrototypeCache[T];
   }
 
+  if (location.protocol === "chrome-error:") {
+    return defaultPrototype;
+  }
+
   try {
     const iframeEl = document.createElement('iframe');
     document.body.appendChild(iframeEl);
